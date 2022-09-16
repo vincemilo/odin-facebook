@@ -23,7 +23,7 @@
 
         <div class="navbar-item">
           <div class='control'>
-            <%= form_with url: "/", method: :get do |form| %>
+            <%= form_with url: searches_path, method: :get, data: {turbo_frame: 'users'} do |form| %>
               <%= form.search_field :search, placeholder: 'Search', class: 'input' %>
             <% end %>
           </div>
