@@ -1,6 +1,8 @@
 class SearchesController < ApplicationController
   def index
-    @users = User.where("first_name LIKE ?", "%#{params[:search]}%")
+    search = params[:search].capitalize
+    @users = User.where('first_name LIKE ? OR last_name LIKE ?',
+                        "%#{search}%", "%#{search}%")
   end
 end
 
