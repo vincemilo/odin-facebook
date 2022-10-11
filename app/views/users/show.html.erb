@@ -1,8 +1,15 @@
 <div class='content'  >
     <h2><%= @friend.first_name + ' ' + @friend.last_name %></h2>
-    <% if @friendship.blank? %>
-      <%= button_to 'Add Friend', user_friendships_path(1) %>
+    <% if current_user.id == @friend.id %>
+      <h4>Your profile</h4>
+    <% elsif @pending_request %>
+      <%= button_to 'Accept Friend Request', user_friendships_path(@friend.id) %>
+    <% elsif @friend_req_sent.blank? %>
+      <%= button_to 'Add Friend', user_friendships_path(@friend.id) %>
+    <% elsif @sent_request == false %>
+      <h4>Friendship requested</h4>
     <% else %>
       <h4>You are friends</h4>
     <% end %>
 </div>
+
