@@ -5,4 +5,3 @@ class SearchesController < ApplicationController
                         "%#{search}%", "%#{search}%")
   end
 end
-

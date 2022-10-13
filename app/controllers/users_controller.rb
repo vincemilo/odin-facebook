@@ -12,9 +12,9 @@ class UsersController < ApplicationController
     @friend_req_received = Friendship.where('sent_to_id = ? AND sent_by_id = ?',
                                             current_user.id, @friend.id)
     if !@friend_req_received.blank?
-      @pending_request = @friend_req_received[0].status
+      @pending_request = @friend_req_received.first.status
     elsif !@friend_req_sent.blank?
-      @sent_request = @friend_req_sent[0].status
+      @sent_request = @friend_req_sent.first.status
     end
   end
 end

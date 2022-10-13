@@ -10,7 +10,7 @@ class TurboFailureApp < Devise::FailureApp
   end
 
   def skip_format?
-    %w(html turbo_stream */*).include? request_format.to_s
+    %w[html turbo_stream */*].include? request_format.to_s
   end
 end
 # Assuming you have not yet modified this file, each configuration option below
@@ -325,7 +325,6 @@ Devise.setup do |config|
   # Configure the parent class to the custom controller.
   config.parent_controller = 'TurboDeviseUserController'
   config.navigational_formats = ['*/*', :html, :turbo_stream]
-
 
   # Warden configuration
   config.warden do |manager|
