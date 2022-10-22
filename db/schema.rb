@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20_220_915_181_717) do
+ActiveRecord::Schema[7.0].define(version: 20_221_014_184_540) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -22,6 +22,15 @@ ActiveRecord::Schema[7.0].define(version: 20_220_915_181_717) do
     t.datetime 'updated_at', null: false
     t.index ['sent_by_id'], name: 'index_friendships_on_sent_by_id'
     t.index ['sent_to_id'], name: 'index_friendships_on_sent_to_id'
+  end
+
+  create_table 'notifications', force: :cascade do |t|
+    t.integer 'notice_id'
+    t.string 'notice_type'
+    t.bigint 'user_id', null: false
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
+    t.index ['user_id'], name: 'index_notifications_on_user_id'
   end
 
   create_table 'users', force: :cascade do |t|
@@ -40,4 +49,5 @@ ActiveRecord::Schema[7.0].define(version: 20_220_915_181_717) do
 
   add_foreign_key 'friendships', 'users', column: 'sent_by_id'
   add_foreign_key 'friendships', 'users', column: 'sent_to_id'
+  add_foreign_key 'notifications', 'users'
 end

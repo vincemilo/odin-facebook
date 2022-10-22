@@ -5,13 +5,14 @@
     <% elsif @pending_request == true %>
       <h4>You are friends</h4>
       <%= button_to 'Unfriend', user_friendship_path(@friend.id), data: {
-        turbo_method: :delete,
-        turbo_confirm: 'Are you sure?'
-      }, method: :delete %>
+                                  turbo_method: :delete,
+                                  turbo_confirm: 'Are you sure?'
+                                }, method: :delete %>
     <% elsif @friend_req_sent.blank? && @friend_req_received.blank? %>
       <%= button_to 'Add Friend', user_friendships_path(@friend.id) %>
     <% elsif @pending_request == false %>
-      <%= button_to 'Accept Friend Request', user_friendship_path(@friend.id), method: :patch %>
+      <%= button_to 'Accept Friend Request', user_friendship_path(@friend.id),
+                                             method: :patch %>
     <% elsif @sent_request == false %>
       <h4>Friendship requested</h4>
     <% else %>

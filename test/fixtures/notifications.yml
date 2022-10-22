@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  notif_id: 1
+  notif_type: MyString
+  user: one
+
+two:
+  notif_id: 1
+  notif_type: MyString
+  user: two
