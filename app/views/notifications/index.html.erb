@@ -1,0 +1,13 @@
+<div class='content'>
+<h1>Notifications</h1>
+<% if @notifications.blank? %>
+  <h4>You have no notifications<h4>
+<% else %>
+  <ul>
+    <% @notifications.each do |notification| %>
+    <li>
+      <%= User.find(notification.notice_id).first_name %> sent you a friend request.
+    </li>
+    <% end %> 
+<% end %>
+</div>

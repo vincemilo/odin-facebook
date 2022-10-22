@@ -31,12 +31,18 @@
 
         <div class="navbar-item">
           <div class="buttons">
+              <%= link_to "Notifications", notifications_index_path, class: 'button is-link' %>
+          </div>
+        </div>
+
+        <div class="navbar-item">
+          <div class="buttons">
               <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete }, class: 'button is-link' %>
               <% else %>
                 <%= link_to "Login", new_user_session_path, class: 'button is-link' %>
               <% end %>
           </div>
-        </div>
+        </div>      
       </div>
     </nav>
     <%= yield %>

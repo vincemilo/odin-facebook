@@ -13,7 +13,7 @@ class FriendshipsController < ApplicationController
     end
 
     if @friendship.save
-      @notification = new_notification(current_user, current_user.id,
+      @notification = new_notification(@friend, current_user.id,
                                        'request')
       redirect_to @friend
     else
