@@ -4,9 +4,10 @@
   <h4>You have no notifications<h4>
 <% else %>
   <ul>
-    <% @notifications.each do |notification| %>
+    <% @requests.each do |request| %>
     <li>
-      <%= User.find(notification.notice_id).first_name %> sent you a friend request.
+      <%= link_to "#{request.first_name + ' ' + request.last_name}",
+                  user_path(request.id) %> sent you a friend request.
     </li>
     <% end %> 
 <% end %>
