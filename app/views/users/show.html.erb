@@ -1,4 +1,4 @@
-<div class='content'  >
+<div class='content'>
     <h2><%= @friend.first_name + ' ' + @friend.last_name %></h2>
     <% if current_user.id == @friend.id %>
       <h4>Your profile</h4>
@@ -13,9 +13,31 @@
     <% elsif @pending_request == false %>
       <%= button_to 'Accept Friend Request', user_friendship_path(@friend.id),
                                              method: :patch %>
+      <%= button_to 'Deny Friend Request', user_friendship_path(@friend.id), data: {
+                                             turbo_method: :delete 
+                                             }, method: :delete %>
     <% elsif @sent_request == false %>
       <h4>Friendship requested</h4>
     <% else %>
       <h4>Error</h4>
     <% end %>
+    
+    <div>
+    <h4>Posts</h4>
+      <div>
+        <%= form_with url: posts_path do |f| %>
+          <%= f.text_area :body %>
+      </div>
+
+      <div>
+      <%= f.submit 'New Post' %>
+      </div>
+      <% end %>
+    </div>
+
+    <div>
+      TBD
+    </div>
 </div>
+
+<%= params %>

@@ -24,4 +24,5 @@ class User < ApplicationRecord
   #            through: :friend_request, source: :sent_by
 
   has_many :notifications, dependent: :destroy
+  has_many :posts, dependent: :destroy
 end

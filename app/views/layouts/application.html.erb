@@ -16,8 +16,13 @@
       <div class="navbar-brand">
         <div class="navbar-item">
           <div class="buttons">
-            <% if current_user %>
               <%= link_to 'Home', home_index_path, class: 'button is-link' %>
+          </div>
+        </div>
+
+        <div class="navbar-item">
+          <div class="buttons">
+              <%= link_to 'Profile', user_path(current_user.id), class: 'button is-link' %>
           </div>
         </div>
 
@@ -37,6 +42,7 @@
 
         <div class="navbar-item">
           <div class="buttons">
+              <% if user_signed_in? %>
               <%= link_to "Logout", destroy_user_session_path, data: { turbo_method: :delete }, class: 'button is-link' %>
               <% else %>
                 <%= link_to "Login", new_user_session_path, class: 'button is-link' %>
