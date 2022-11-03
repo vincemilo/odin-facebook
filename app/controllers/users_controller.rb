@@ -16,5 +16,7 @@ class UsersController < ApplicationController
     elsif !@friend_req_sent.blank?
       @sent_request = @friend_req_sent.first.status
     end
+
+    @posts = Post.where('user_id = ?', params[:id]).reverse
   end
 end
