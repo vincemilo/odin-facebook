@@ -19,4 +19,9 @@ class UsersController < ApplicationController
 
     @posts = Post.where('user_id = ?', params[:id]).reverse
   end
+
+  def notification_seen
+    current_user.notice_seen = true
+    current_user.save
+  end
 end
