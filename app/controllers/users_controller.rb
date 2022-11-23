@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UsersController < ApplicationController
   before_action :authenticate_user!
 
@@ -17,6 +19,7 @@ class UsersController < ApplicationController
       @sent_request = @friend_req_sent.first.status
     end
 
+    @post = Post.find(params[:id])
     @posts = Post.where('user_id = ?', params[:id]).reverse
   end
 

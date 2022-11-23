@@ -1,1 +1,24 @@
-<p><%= @post.body %></p>
+<div class="content">
+<h1><%= @post.body %></h1>
+
+<h2>Comments</h2>
+<% @post.comments.each do |comment| %>
+  <p>
+    <strong><%= link_to user_name(comment), user_path(comment.commenter) %> posted:</strong>
+  </p>
+  <p>
+  <%= comment.body %>
+  </p>
+<% end %>
+
+<h4>Add a comment:</h4>
+<%= form_with model: [ @post, @post.comments.build ] do |form| %>
+    <%= form.hidden_field :commenter, value: current_user.id %>
+  <p>
+    <%= form.text_area :body %>
+  </p>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>
+</div>

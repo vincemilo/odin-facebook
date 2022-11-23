@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ApplicationHelper
   def new_notification(user, notice_id, notice_type)
     notice = user.notifications.build(notice_id:, notice_type:)

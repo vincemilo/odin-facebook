@@ -14,6 +14,7 @@
     <nav class="navbar" role="navigation" aria-label="main navigation">
       
       <div class="navbar-brand">
+        <% if user_signed_in? %>
         <div class="navbar-item">
           <div class="buttons">
               <%= link_to 'Home', home_index_path, class: 'button is-link' %>
@@ -39,7 +40,7 @@
               <%= link_to "Notifications", notifications_index_path, class: 'button is-link' %>
           </div>
         </div>
-
+        <% end %> 
         <div class="navbar-item">
           <div class="buttons">
               <% if user_signed_in? %>
@@ -48,7 +49,7 @@
                 <%= link_to "Login", new_user_session_path, class: 'button is-link' %>
               <% end %>
           </div>
-        </div>      
+        </div>
       </div>
     </nav>
     <%= yield %>
