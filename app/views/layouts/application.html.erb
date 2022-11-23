@@ -17,7 +17,7 @@
         <% if user_signed_in? %>
         <div class="navbar-item">
           <div class="buttons">
-              <%= link_to 'Home', home_index_path, class: 'button is-link' %>
+              <%= link_to 'Home', posts_path, class: 'button is-link' %>
           </div>
         </div>
 
@@ -37,7 +37,7 @@
 
         <div class="navbar-item">
           <div class="buttons">
-              <%= link_to "Notifications", notifications_index_path, class: 'button is-link' %>
+              <%= link_to "Notifications", notifications_path, class: 'button is-link' %>
           </div>
         </div>
         <% end %> 

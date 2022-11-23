@@ -1,0 +1,14 @@
+<%= turbo_frame_tag post do %>
+    <div class="post">
+      <%= link_to post.body, 
+                 post_path(post),
+                 data: { turbo_frame: "_top" } %>
+    <div class="post__actions">
+        <%= button_to "Delete",
+                    post_path(post),
+                    method: :delete %>
+        <%= link_to "Edit",
+                    edit_post_path(post) %>
+    </div>
+    </div>
+<% end %>

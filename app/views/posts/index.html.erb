@@ -1,0 +1,19 @@
+<div class='content'>
+    <% if user_signed_in? %>
+        <h1>Welcome to OdinFacebook, <%= current_user.first_name %>!</h1>
+    <% else %>
+        <h1>Welcome to OdinFacebook!</h1>
+    <% end %>
+
+    <div class="header">
+        <h1>Posts</h1>
+        <%= link_to "New post", 
+            new_post_path,
+            data: { turbo_frame: dom_id(Post.new) } %>
+    </div>
+
+    <%= turbo_frame_tag Post.new %>
+    <%= turbo_frame_tag "posts" do %>
+      <%= render @posts %>
+    <% end %>
+</div>

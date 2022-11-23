@@ -2,10 +2,11 @@
 
 class Post < ApplicationRecord
   belongs_to :user
-  has_many :comments
-  has_many :likes
+  has_many :comments, dependent: :destroy
 
   validates :body, presence: true, length: {
     maximum: 280
   }
+
+  scope :ordered, -> { order(id: :desc) }
 end

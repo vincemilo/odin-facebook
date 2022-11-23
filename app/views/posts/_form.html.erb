@@ -1,0 +1,16 @@
+<%= form_with model: @post do |form| %>
+  <% if @post.errors.any? %>
+    <div class="error-message">
+      <%= @post.errors.full_messages.to_sentence.capitalize %>
+    </div>
+  <% end %>
+  <p>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %>
+  </p>
+  <p>
+    <%= link_to "Cancel", posts_path %>
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>

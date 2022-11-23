@@ -21,29 +21,4 @@
     <% else %>
       <h4>Error</h4>
     <% end %>
-
-    <% if current_user.id == @friend.id %>
-    <div>
-      <div>
-        <%= form_with model: @post do |f| %>
-          <%= f.text_area :body %>
-      </div>
-
-      <div>
-      <%= f.submit 'New Post' %>
-      </div>
-      <% end %>
-    </div>
-    <% end %>
-    
-    <p></p>
-    
-    <div>
-      <h4>Posts</h4>
-      <% @posts.each do |post| %>
-      <h6><%= @friend.first_name + ' ' + @friend.last_name %></h6>
-      <p><%= link_to "#{Time.zone.parse(post.created_at.to_s).strftime('%B %d, %Y') }", post_path(post.id) %>
-      <p><%= post.body %></p>
-      <% end %>
-    </div>
 </div>

@@ -18,9 +18,6 @@ class UsersController < ApplicationController
     elsif !@friend_req_sent.blank?
       @sent_request = @friend_req_sent.first.status
     end
-
-    @post = Post.find(params[:id])
-    @posts = Post.where('user_id = ?', params[:id]).reverse
   end
 
   def notification_seen
