@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 class PostsController < ApplicationController
+  before_action :set_post, only: %i[show edit update destroy]
+
   def index
-    @posts = Post.all
+    @posts = Post.ordered
   end
 
-  def show
-    @post = Post.find(params[:id])
-  end
+  def show; end
 
   def new
     @post = Post.new
@@ -15,34 +17,39 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params)
 
     if @post.save
-      redirect_to posts_path
+      respond_to do |format|
+        format.html { redirect_to posts_path, notice: 'Post was successfully created.' }
+        format.turbo_stream
+      end
     else
       render :new, status: :unprocessable_entity
     end
   end
 
-  def edit
-    @post = Post.find(params[:id])
-  end
+  def edit; end
 
   def update
-    @post = Post.find(params[:id])
-
     if @post.update(post_params)
-      redirect_to @post
+      redirect_to posts_path, notice: 'Post was successfully updated.'
     else
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @post = Post.find(params[:id])
     @post.destroy
 
-    redirect_to root_path, status: :see_other
+    respond_to do |format|
+      format.html { redirect_to posts_path, notice: 'Post was successfully destroyed.' }
+      format.turbo_stream
+    end
   end
 
   private
+
+  def set_post
+    @post = Post.find(params[:id])
+  end
 
   def post_params
     params.require(:post).permit(:body)

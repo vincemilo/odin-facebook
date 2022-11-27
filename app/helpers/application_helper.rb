@@ -7,4 +7,9 @@ module ApplicationHelper
     user.save
     notice
   end
+
+  def friend(post)
+    user = User.find(post.user_id)
+    "#{user.first_name} #{user.last_name}".to_s
+  end
 end

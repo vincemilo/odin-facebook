@@ -29,7 +29,7 @@
 
         <div class="navbar-item">
           <div class='control'>
-            <%= form_with url: searches_path, method: :get, data: {turbo_frame: 'users'} do |form| %>
+            <%= form_with url: searches_path, method: :get do |form| %>
               <%= form.search_field :search, placeholder: 'Search', class: 'input' %>
             <% end %>
           </div>
@@ -52,6 +52,11 @@
         </div>
       </div>
     </nav>
+    <% flash.each do |type, msg| %>
+      <div>
+        <%= msg %>
+      </div>
+    <% end %>
     <%= yield %>
   </body>
 </html>

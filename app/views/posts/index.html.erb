@@ -13,7 +13,8 @@
     </div>
 
     <%= turbo_frame_tag Post.new %>
-    <%= turbo_frame_tag "posts" do %>
+
+    <%= turbo_frame_tag 'posts' do %>
       <%= render @posts %>
     <% end %>
 </div>

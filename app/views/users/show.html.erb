@@ -2,6 +2,14 @@
     <h2><%= @friend.first_name + ' ' + @friend.last_name %></h2>
     <% if current_user.id == @friend.id %>
       <h4>Your profile</h4>
+          <%= link_to "New post", 
+            new_post_path,
+            data: { turbo_frame: dom_id(Post.new) } %>
+    
+      <%= turbo_frame_tag Post.new %>
+      <%= turbo_frame_tag 'posts' do %>
+        <%= render @posts %>
+      <% end %>
     <% elsif @pending_request == true %>
       <h4>You are friends</h4>
       <%= button_to 'Unfriend', user_friendship_path(@friend.id), data: {
