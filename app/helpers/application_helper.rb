@@ -12,4 +12,10 @@ module ApplicationHelper
     user = User.find(post.user_id)
     "#{user.first_name} #{user.last_name}".to_s
   end
+
+  def notice_button
+    return 'button is-danger' if current_user.notice_seen == false
+
+    'button is-link'
+  end
 end
