@@ -4,12 +4,16 @@
   <h4>You have no notifications<h4>
 <% else %>
   <ul>
-    <% @requests.each do |request| %>
+    <% @notifications.each do |notification| %>
     <li>
-      <%= link_to "#{request.first_name + ' ' + request.last_name}",
-                  user_path(request.id) %> sent you a friend request.
-      <%= request.created_at %>
-    </li>
+      <% if notification.notice_type == 'request' %>
+        <%= link_to find_user(notification.notice_id),
+                    user_path(notification.notice_id) %> sent you a friend request.
+      <% elsif notification.notice_type == 'comment' %>
+        <%= link_to find_user(notification.notice_id),
+                    user_path(notification.notice_id) %> commented on your post.
+      <% end %>
+      <%= notification.created_at.strftime('%b %d, %Y') %>
     <% end %> 
 <% end %>
 </div>

@@ -3,9 +3,7 @@
       <h6><%= link_to friend(post),
             user_path(post.user_id),
             data: { turbo_frame: "_top" } %></h6>
-      <%= link_to "#{Time.zone.parse(
-                  post.created_at.to_s).strftime(
-                  '%B %d, %Y') }",
+      <%= link_to post.created_at.strftime('%b %d, %Y'),
                   post_path(post),
                   data: { turbo_frame: "_top" } %>
       <p><%= post.body %></p>

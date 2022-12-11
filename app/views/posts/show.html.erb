@@ -5,7 +5,7 @@
 <h2>Comments</h2>
 <% @post.comments.each do |comment| %>
   <p>
-    <strong><%= link_to user_name(comment), user_path(comment.commenter) %> posted:</strong>
+    <strong><%= link_to find_user(comment.commenter), user_path(comment.commenter) %> posted:</strong>
   </p>
   <p>
   <%= comment.body %>

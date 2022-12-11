@@ -7,15 +7,13 @@ class NotificationsController < ApplicationController
     @notifications = Notification.where('user_id = ?', current_user.id)
     return if @notifications.blank?
 
-    @requests = []
+    @user_requests = []
 
-    @notifications.each do |notification|
-      @requests << User.find(notification.notice_id) if notification.notice_type == 'request'
+    @notifications.requests.each do |notification|
+      @user_requests << User.find(notification.notice_id)
     end
 
-    # @requests.each do |request|
-    #   @users << User.find(request.notice_id)
-    # end
+    
   end
 
   private
