@@ -8,10 +8,12 @@
     <li>
       <% if notification.notice_type == 'request' %>
         <%= link_to find_user(notification.notice_id),
-                    user_path(notification.notice_id) %> sent you a friend request.
+                    user_path(notification.notice_id) %> 
+                    sent you a friend request.
       <% elsif notification.notice_type == 'comment' %>
-        <%= link_to find_user(notification.notice_id),
-                    user_path(notification.notice_id) %> commented on your post.
+        <%= link_to find_commenter(notification.notice_id),
+                    user_path(notification.user_id) %> commented on your
+                    <%= link_to 'post.', post_path(notification.notice_id) %>
       <% end %>
       <%= notification.created_at.strftime('%b %d, %Y') %>
     <% end %> 

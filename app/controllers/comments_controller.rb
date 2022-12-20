@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
     @comment = @post.comments.create(comment_params)
 
     if @comment.save
-      @notification = new_notification(User.find(@post.user_id), current_user.id,
+      @notification = new_notification(User.find(@post.user_id), @comment.id,
                                        'comment')
     end
     redirect_to post_path(@post)

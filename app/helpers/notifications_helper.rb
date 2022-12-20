@@ -7,4 +7,11 @@ module NotificationsHelper
 
     "#{user.first_name} #{user.last_name}"
   end
+
+  def find_commenter(comment_id)
+    commenter = Comment.find(comment_id).commenter
+    return 'You' if commenter == current_user.id
+
+    find_user(commenter)
+  end
 end
