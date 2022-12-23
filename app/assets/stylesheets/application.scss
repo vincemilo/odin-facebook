@@ -15,3 +15,15 @@
  */
 
  @import "bulma";
+
+ .post {
+    border: 1px solid;
+    max-width: 600px;
+    margin: 10px;
+    padding: 10px
+ }
+
+ .post__actions {
+    display: flex;
+    gap: 10px;
+ }

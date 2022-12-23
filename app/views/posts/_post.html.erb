@@ -7,8 +7,9 @@
                   post_path(post),
                   data: { turbo_frame: "_top" } %>
       <p><%= post.body %></p>
-      <% if current_user.id == post.user_id %>
         <div class="post__actions">
+            <%= link_to "Like" %>
+      <% if current_user.id == post.user_id %>       
             <%= button_to "Delete",
                         post_path(post),
                         method: :delete %>
