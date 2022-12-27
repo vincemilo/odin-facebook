@@ -8,18 +8,27 @@
                   data: { turbo_frame: "_top" } %>
       <p><%= post.body %></p>
         <div class="post__actions">
-            <%= button_to "Like", likes_path, params: { post_id: post.id },
-                          data: { turbo_frame: "posts" } %>
-            <%= link_to "Comments", post_path(post.id),
+            <% if liked?(post) %>
+              <%# post.likes.inspect %>
+              <% like = find_like(post).first %>
+              <%# like.inspect %>
+              <%= link_to "Unlike", like_path(like.id),
+                                    data: { turbo_method: :delete } %>
+            <% else %>
+              <%= button_to "Like", likes_path, params: { post_id: post.id },
+                            data: { turbo_frame: "posts" } %>
+            <% end %>
+          <%= link_to "Comments", post_path(post.id),
                 data: { turbo_frame: "_top" } %>
-      <% if current_user.id == post.user_id %>       
-            <%= link_to "Edit",
-                        edit_post_path(post) %>
-            <%= button_to "Delete",
-                        post_path(post),
-                        method: :delete %>
+          <% if current_user.id == post.user_id %>       
+              <%= link_to "Edit",
+                          edit_post_path(post) %>
+              <%= button_to "Delete",
+                          post_path(post),
+                          method: :delete %>
+          <% end %>
         </div>
-      <% end %>
     </div>
-    
 <% end %>
+
+<%= @like %>
