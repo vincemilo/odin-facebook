@@ -8,6 +8,11 @@ module ApplicationHelper
     notice
   end
 
+  def del_notification(obj, type)
+    notification = Notification.where(notice_id: obj.id).where(notice_type: type)
+    notification.destroy_all
+  end
+
   def friend(post)
     user = User.find(post.user_id)
     "#{user.first_name} #{user.last_name}".to_s
@@ -31,13 +36,8 @@ module ApplicationHelper
     find_user(commenter)
   end
 
-  def liked?(post)
-    return true if find_like(post).any?
-
-    false
-  end
-
-  def find_like(post)
-    Like.where(user_id: current_user.id).where(post_id: post.id)
+  def find_liker(like_id)
+    liker = Like.find(like_id).user_id
+    find_user(liker)
   end
 end

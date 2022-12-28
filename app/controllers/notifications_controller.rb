@@ -12,8 +12,6 @@ class NotificationsController < ApplicationController
     @notifications.requests.each do |notification|
       @user_requests << User.find(notification.notice_id)
     end
-
-    
   end
 
   private

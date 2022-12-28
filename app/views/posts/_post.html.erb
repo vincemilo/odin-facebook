@@ -9,10 +9,7 @@
       <p><%= post.body %></p>
         <div class="post__actions">
             <% if liked?(post) %>
-              <%# post.likes.inspect %>
-              <% like = find_like(post).first %>
-              <%# like.inspect %>
-              <%= link_to "Unlike", like_path(like.id),
+              <%= link_to "Unlike", like_path(find_like(post).first),
                                     data: { turbo_method: :delete } %>
             <% else %>
               <%= button_to "Like", likes_path, params: { post_id: post.id },
@@ -30,5 +27,3 @@
         </div>
     </div>
 <% end %>
-
-<%= @like %>

@@ -13,9 +13,13 @@
       <% elsif notification.notice_type == 'comment' %>
         <%= link_to find_commenter(notification.notice_id),
                     user_path(notification.user_id) %> commented on your
-                    <%= link_to 'post.', post_path(notification.notice_id) %>
+                    <%= link_to 'post.', post_path(find_obj(notification.notice_id, 'comment').post_id) %>
+      <% elsif notification.notice_type == 'like' %>
+        <%= link_to find_liker(notification.notice_id),
+                    user_path(notification.user_id) %> liked your
+                    <%= link_to 'post.', post_path(find_obj(notification.notice_id, 'like').post_id) %>
       <% end %>
-      <%= notification.created_at.strftime('%b %d, %Y') %>
+      <%= notification.created_at.strftime('%l:%M%P %b %d, %Y') %>
     <% end %> 
 <% end %>
 </div>

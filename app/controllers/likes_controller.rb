@@ -13,6 +13,7 @@ class LikesController < ApplicationController
 
   def destroy
     @like = Like.find(params[:id])
+    del_notification(@like, 'like')
     @like.destroy
     redirect_to posts_path, status: :see_other
   end
