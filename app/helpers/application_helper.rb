@@ -36,8 +36,57 @@ module ApplicationHelper
     find_user(commenter)
   end
 
+  def liked?(obj)
+    return true if find_like(obj).any?
+
+    false
+  end
+
+  def find_like(obj)
+    post = Like.where(user_id: current_user.id).where(post_id: obj.id)
+    return post if post.any?
+
+    Like.where(user_id: current_user.id).where(comment_id: obj.id)
+  end
+
   def find_liker(like_id)
     liker = Like.find(like_id).user_id
     find_user(liker)
+  end
+
+  def like_post(post)
+    like = current_user.likes.build(post_id: post.id)
+    return unless like.save && like.post_id
+
+    like_notice(post, like)
+  end
+
+  def like_comment(comment)
+    like = current_user.likes.build(comment_id: comment.id)
+    return unless like.save && like.comment_id
+
+    like_notice(comment, like)
+  end
+
+  def like_notice(obj, like)
+    # foo = user_id
+    if obj.instance_of?(Post)
+      new_notification(User.find(obj.user_id), like.id, 'like')
+    else
+      new_notification(User.find(obj.commenter), like.id, 'like')
+    end
+  end
+
+  def find_obj(notice_id, type) # determines if obj is comment or like
+    if type == 'comment'
+      Comment.find(notice_id)
+    else
+      Like.find(notice_id)
+    end
+  end
+
+  def find_post(notice_id)
+    post = Like.find(notice.id).post_id
+    Post.find(post)
   end
 end

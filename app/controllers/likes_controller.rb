@@ -2,19 +2,21 @@ class LikesController < ApplicationController
   include ApplicationHelper
 
   def create
-    @post = Post.find(params[:post_id])
-    @like = current_user.likes.build(post_id: params[:post_id])
-    if @like.save && @like.post_id
-      @notification = new_notification(User.find(@post.user_id), @like.id,
-                                       'like')
+    if params[:comment_id].nil?
+      @post = Post.find(params[:post_id])
+      like_post(@post)
+    elsif params[:post_id].nil?
+      @comment = Comment.find(params[:comment_id])
+      like_comment(@comment)
     end
-    redirect_to posts_path
+
+    redirect_back(fallback_location: posts_path)
   end
 
   def destroy
     @like = Like.find(params[:id])
-    del_notification(@like, 'like')
+    del_notification(@like, 'like') # remove associated notice
     @like.destroy
-    redirect_to posts_path, status: :see_other
+    redirect_back(fallback_location: posts_path, status: :see_other)
   end
 end
