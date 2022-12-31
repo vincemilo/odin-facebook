@@ -85,8 +85,17 @@ module ApplicationHelper
     end
   end
 
-  def find_post(notice_id)
-    post = Like.find(notice.id).post_id
-    Post.find(post)
+  def find_comment(notice_id)
+    like = Like.find(notice_id)
+    Comment.find(like.comment_id)
+  end
+
+  def find_commented_post(notice_id)
+    comment = find_comment(notice_id)
+    Post.find(comment.post_id)
+  end
+
+  def timestamp(obj)
+    obj.created_at.strftime('%b %d, %Y at %l:%M%P')
   end
 end

@@ -4,6 +4,11 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!
   include ApplicationHelper
 
+  def show
+    @comment = Comment.find(params[:id])
+    @post = Post.find(params[:post_id])
+  end
+
   def create
     @post = Post.find(params[:post_id])
     @comment = @post.comments.create(comment_params)

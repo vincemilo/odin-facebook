@@ -1,11 +1,13 @@
 <%= turbo_frame_tag post do %>
-    <div class="post">
+    <div class="box">
       <h6><%= link_to friend(post),
             user_path(post.user_id),
             data: { turbo_frame: "_top" } %></h6>
-      <%= link_to post.created_at.strftime('%b %d, %Y'),
+      <div class="tag is-info is-light">
+      <%= link_to timestamp(post),
                   post_path(post),
                   data: { turbo_frame: "_top" } %>
+      </div>
       <p><%= post.body %></p>
         <div class="post__actions">
             <% if liked?(post) %>

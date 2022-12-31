@@ -1,0 +1,27 @@
+<div class="box">
+      <p>
+        <strong><%= link_to find_user(comment.commenter), user_path(comment.commenter) %> commented:</strong>
+      </p>
+      <p>
+      <%= link_to timestamp(comment), post_comment_path(comment.post_id, comment.id) %>
+      </p>
+      <p>
+      <%= comment.body %>
+      </p>
+      <div class="post__actions">
+        <% if liked?(comment) %>
+          <%= link_to "Unlike", like_path(find_like(comment).first),
+                                        data: { turbo_method: :delete } %>
+        <% else %>
+          <%= button_to "Like", likes_path, params: { comment_id: comment.id } %>
+        <% end %>
+        <% if current_user.id == comment.commenter %>
+          <%= link_to "Delete", [comment.post, comment],
+                                  data: {
+                                    turbo_method: :delete,
+                                    turbo_confirm: "Are you sure?" 
+                                    } %>
+      
+        <% end %>
+      </div>
+</div>
