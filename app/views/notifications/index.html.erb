@@ -14,8 +14,7 @@
         <%= link_to find_commenter(notification.notice_id),
                     user_path(notification.user_id) %> commented on your
                     <%= link_to 'post.', post_path(find_obj(notification.notice_id, 'comment').post_id) %>
-      <% elsif notification.notice_type == 'like' %>
-        <%= notification.inspect %>     
+      <% elsif notification.notice_type == 'like' %>    
         <%= link_to find_liker(notification.notice_id),
                     user_path(notification.user_id) %> liked your
                     <% if find_obj(notification.notice_id, 'like').comment_id.nil? %>
