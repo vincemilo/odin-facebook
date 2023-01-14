@@ -1,11 +1,18 @@
 <div class='content'>
+    <span>
+    <figure class="image is-96x96">
+    <%= image_tag @friend.gravatar_url+'&d=mp', class:"is-rounded" %>
+    </figure>
     <h2><%= @friend.first_name + ' ' + @friend.last_name %></h2>
+    </span>
     <% if current_user.id == @friend.id %>
       <h4>Your profile</h4>
-          <%= link_to "New post", 
-            new_post_path,
-            data: { turbo_frame: dom_id(Post.new) } %>
-    
+        <p><%= link_to "Change your profile picture", "https://gravatar.com", target: "_blank" %></p>
+        <p><%= link_to "View all users", users_path %>
+        <p><%= link_to "New post", 
+          new_post_path,
+          data: { turbo_frame: dom_id(Post.new) } %>
+        </p>
       <%= turbo_frame_tag Post.new %>
       <%= turbo_frame_tag 'posts' do %>
         <%= render @posts %>
@@ -16,7 +23,7 @@
                                   turbo_method: :delete,
                                   turbo_confirm: 'Are you sure?'
                                 }, method: :delete %>
-    <% elsif @friend_req_sent.blank? && @friend_req_received.blank? %>
+    <% elsif !friend_req_sent?(@friend.id, current_user.id) && @friend_req_received.blank? %>
       <%= button_to 'Add Friend', user_friendships_path(@friend.id) %>
     <% elsif @pending_request == false %>
       <%= button_to 'Accept Friend Request', user_friendship_path(@friend.id),

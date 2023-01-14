@@ -3,7 +3,7 @@
 Rails.application.routes.draw do
   root 'posts#index'
   devise_for :users
-  resources :users, only: [:show] do
+  resources :users, only: %i[index show] do
     resources :friendships, only: %i[create update destroy]
   end
   resources :searches

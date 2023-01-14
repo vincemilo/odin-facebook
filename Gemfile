@@ -76,3 +76,4 @@ end
 gem 'bulma-rails', '~> 0.9.3'
 gem 'devise'
 gem 'rubocop'
+gem 'gravtastic'

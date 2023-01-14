@@ -98,4 +98,15 @@ module ApplicationHelper
   def timestamp(obj)
     obj.created_at.strftime('%b %d, %Y at %l:%M%P')
   end
+
+  def find_avatar(id)
+    User.find(id)
+  end
+
+  def friend_req_sent?(friend_id, user_id)
+    return false if Friendship.where('sent_to_id = ? AND sent_by_id = ?',
+                                     friend_id, user_id).blank?
+
+    true
+  end
 end
