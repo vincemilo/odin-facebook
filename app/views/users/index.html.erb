@@ -2,9 +2,12 @@
     <h1>All Users</h1>
     <ul>
         <% @friends.each do |friend| %>
+          <% unless friend.id == current_user.id %>
             <li>
             <%= link_to friend.first_name + ' ' + friend.last_name, friend %>
+            <%= render "friendship", friend: friend %>
             </li>
+          <% end %>
         <% end %>
     </ul>
 </div>

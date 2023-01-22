@@ -103,10 +103,43 @@ module ApplicationHelper
     User.find(id)
   end
 
-  def friend_req_sent?(friend_id, user_id)
-    return false if Friendship.where('sent_to_id = ? AND sent_by_id = ?',
-                                     friend_id, user_id).blank?
+  def friend_req_received(friend, user)
+    Friendship.where('sent_to_id = ? AND sent_by_id = ?',
+                     user.id, friend.id)
+  end
 
-    true
+  def friend_req_sent(friend, user)
+    Friendship.where('sent_to_id = ? AND sent_by_id = ?',
+                     friend.id, user.id)
+  end
+
+  def friends?(friend, user)
+    received = friend_req_received(friend, user)
+    sent = friend_req_sent(friend, user)
+    return true if (!received.blank? && received.first.status == true) ||
+                   (!sent.blank? && sent.first.status == true)
+              
+    false
+  end
+
+  def not_friends?(friend, user)
+    return true if friend_req_received(friend, user).blank? &&
+                   friend_req_sent(friend, user).blank?
+    
+    false
+  end
+
+  def pending_request?(friend, user)
+    received = friend_req_received(friend, user)
+    return true if !received.blank? && received.first.status == false
+
+    false
+  end
+
+  def sent_request?(friend, user)
+    sent = friend_req_sent(friend, user)
+    return true if !sent.blank? && sent.first.status == false
+
+    false
   end
 end

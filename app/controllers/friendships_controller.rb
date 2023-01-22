@@ -15,9 +15,8 @@ class FriendshipsController < ApplicationController
     end
 
     if @friendship.save
-      @notification = new_notification(@friend, current_user.id,
-                                       'request')
-      redirect_to @friend
+      new_notification(@friend, current_user.id, 'request')
+      redirect_back(fallback_location: posts_path)
     else
       render root_path, status: :unprocessable_entity
     end
@@ -29,7 +28,7 @@ class FriendshipsController < ApplicationController
                                    current_user.id, @friend.id).first
 
     if @friendship.update(status: true)
-      redirect_to @friend
+      redirect_back(fallback_location: posts_path)
     else
       render root_path, status: :unprocessable_entity
     end
@@ -40,7 +39,11 @@ class FriendshipsController < ApplicationController
     @friendship = Friendship.where('sent_to_id = ? AND sent_by_id = ?',
                                    current_user.id, @friend.id).first
 
+    if @friendship.blank?
+      @friendship = Friendship.where('sent_to_id = ? AND sent_by_id = ?',
+                                     @friend.id, current_user.id).first
+    end
     @friendship.destroy
-    redirect_to @friend, status: :see_other
+    redirect_back(fallback_location: posts_path, status: :see_other)
   end
 end

@@ -1,0 +1,21 @@
+<div>
+    <% if friends?(friend, current_user) %>
+      <p>You are friends</p>
+      <%= button_to 'Unfriend', user_friendship_path(friend.id, id: friend.id), data: {
+                                  turbo_method: :delete,
+                                  turbo_confirm: 'Are you sure?'
+                                }, method: :delete %>
+    <% elsif not_friends?(friend, current_user) %>
+      <%= button_to 'Add Friend', user_friendships_path(friend.id) %>
+    <% elsif pending_request?(friend, current_user) %>
+      <%= button_to 'Accept Friend Request', user_friendship_path(friend.id, id: friend.id),
+                                             method: :patch %>
+      <% button_to 'Deny Friend Request', user_friendship_path(friend.id, id: friend.id), data: {
+                                             turbo_method: :delete 
+                                             }, method: :delete %>
+    <% elsif sent_request?(friend, current_user) %>
+      <p>Friendship requested</p>
+    <% else %>
+      <p>Error</p>
+    <% end %>
+</div>
