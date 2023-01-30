@@ -14,6 +14,14 @@ class NotificationsController < ApplicationController
     end
   end
 
+  def destroy
+    @notifications = Notification.where('user_id = ?', current_user.id)
+    return if @notifications.blank?
+
+    @notifications.destroy_all
+    redirect_back(fallback_location: posts_path, status: :see_other)
+  end
+
   private
 
   def saw_notice

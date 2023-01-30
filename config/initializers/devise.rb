@@ -325,6 +325,7 @@ Devise.setup do |config|
   # Configure the parent class to the custom controller.
   config.parent_controller = 'TurboDeviseUserController'
   config.navigational_formats = ['*/*', :html, :turbo_stream]
+  config.omniauth :facebook, Rails.application.credentials.facebook[:APP_ID], Rails.application.credentials.facebook[:APP_SECRET], token_params: { parse: :json }
 
   # Warden configuration
   config.warden do |manager|

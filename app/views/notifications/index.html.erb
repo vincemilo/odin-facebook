@@ -3,6 +3,10 @@
 <% if @notifications.blank? %>
   <h4>You have no notifications<h4>
 <% else %>
+    <%= link_to "Clear all notifications", notification_path(@notifications.first), data: {
+      turbo_method: :delete,
+      turbo_confirm: "Are you sure?"
+    } %>
   <ul>
     <% @notifications.each do |notification| %>
     <li>
