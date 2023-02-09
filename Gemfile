@@ -79,3 +79,4 @@ gem 'rubocop'
 gem 'gravtastic'
 gem 'omniauth-facebook'
 gem 'omniauth-rails_csrf_protection'
+gem "letter_opener", group: :development

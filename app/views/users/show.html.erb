@@ -13,10 +13,11 @@
           new_post_path,
           data: { turbo_frame: dom_id(Post.new) } %>
         </p>
-      <%= turbo_frame_tag Post.new %>
-      <%= turbo_frame_tag 'posts' do %>
-        <%= render @posts %>
-      <% end %>
+    <% else %>
+      <%= render "friendship", friend: @friend %>
+    <% end %>
+    <%= turbo_frame_tag Post.new %>
+    <%= turbo_frame_tag 'posts' do %>
+    <%= render @posts %>
     <% end %>
 </div>
-<%= render "friendship", friend: @friend %>
