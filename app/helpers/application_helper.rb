@@ -15,7 +15,7 @@ module ApplicationHelper
 
   def friend(post)
     user = User.find(post.user_id)
-    "#{user.first_name} #{user.last_name}".to_s
+    "#{user.name}".to_s
   end
 
   def notice_button
@@ -28,7 +28,7 @@ module ApplicationHelper
     user = User.find(user_id)
     return 'You' if user_id == current_user.id
 
-    "#{user.first_name} #{user.last_name}"
+    "#{user.name}"
   end
 
   def find_commenter(comment_id)

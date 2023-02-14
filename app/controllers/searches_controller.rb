@@ -3,7 +3,6 @@
 class SearchesController < ApplicationController
   def index
     search = params[:search].capitalize
-    @users = User.where('first_name LIKE ? OR last_name LIKE ?',
-                        "%#{search}%", "%#{search}%")
+    @users = User.where('name LIKE ?', "%#{search}%")
   end
 end

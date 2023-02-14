@@ -4,7 +4,7 @@
         <% @friends.each do |friend| %>
           <% unless friend.id == current_user.id %>
             <li>
-            <%= link_to friend.first_name + ' ' + friend.last_name, friend %>
+            <%= link_to friend.name, friend %>
             <%= render "friendship", friend: friend %>
             </li>
           <% end %>

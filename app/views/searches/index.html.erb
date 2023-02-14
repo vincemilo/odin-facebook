@@ -5,7 +5,7 @@
         <p>No results found</p>
       <% else %>
         <% @users.each do |user| %>
-          <p><%= link_to user.first_name + ' ' + user.last_name, user_path(user.id) %></p>
+          <p><%= link_to user.name, user_path(user.id) %></p>
         </h3>
         <% end %>
       <% end %>

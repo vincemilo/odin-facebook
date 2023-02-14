@@ -3,11 +3,12 @@
     <figure class="image is-96x96">
     <%= image_tag @friend.gravatar_url+'&d=mp', class:"is-rounded" %>
     </figure>
-    <h2><%= @friend.first_name + ' ' + @friend.last_name %></h2>
+    <h2><%= @friend.name %></h2>
     </span>
     <% if current_user.id == @friend.id %>
       <h4>Your profile</h4>
         <p><%= link_to "Change your profile picture", "https://gravatar.com", target: "_blank" %></p>
+        <p><%= link_to "Account Settings", edit_user_registration_path %></p>
         <p><%= link_to "View all users", users_path %>
         <p><%= link_to "New post", 
           new_post_path,
