@@ -1,18 +1,5 @@
 # frozen_string_literal: true
 
-class TurboFailureApp < Devise::FailureApp
-  def respond
-    if request_format == :turbo_stream
-      redirect
-    else
-      super
-    end
-  end
-
-  def skip_format?
-    %w[html turbo_stream */*].include? request_format.to_s
-  end
-end
 # Assuming you have not yet modified this file, each configuration option below
 # is set to its default value. Note that some are commented out while others
 # are not: uncommented lines are intended to protect your configuration from
@@ -323,12 +310,9 @@ Devise.setup do |config|
   # config.sign_in_after_change_password = true
 
   # Configure the parent class to the custom controller.
-  config.parent_controller = 'TurboDeviseUserController'
-  config.navigational_formats = ['*/*', :html, :turbo_stream]
   config.omniauth :facebook, Rails.application.credentials.facebook[:APP_ID], Rails.application.credentials.facebook[:APP_SECRET], token_params: { parse: :json }
 
-  # Warden configuration
-  config.warden do |manager|
-    manager.failure_app = TurboFailureApp
-  end
+  # Configure responses to match Hotwire/Turbo behavior.
+  config.responder.error_status = :unprocessable_entity
+  config.responder.redirect_status = :see_other
 end
