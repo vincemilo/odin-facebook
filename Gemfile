@@ -74,7 +74,8 @@ group :test do
 end
 
 gem 'bulma-rails', '~> 0.9.3'
-gem 'devise'
+gem 'devise', github: 'heartcombo/devise', branch: 'main'
+gem 'responders', '~> 3.1.0'
 gem 'rubocop'
 gem 'gravtastic'
 gem 'omniauth-facebook'
