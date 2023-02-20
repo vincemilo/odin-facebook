@@ -311,7 +311,7 @@ Devise.setup do |config|
 
   # Configure the parent class to the custom controller.
 
-  config.omniauth :facebook, Rails.application.credentials.facebook[:APP_ID], Rails.application.credentials.facebook[:APP_SECRET], token_params: { parse: :json }
+  config.omniauth :facebook, ENV['FACEBOOK_KEY'], ENV['FACEBOOK_SECRET'], scope: 'email', info_fields: 'email, name', token_params: { parse: :json }
 
   # Configure responses to match Hotwire/Turbo behavior.
   config.responder.error_status = :unprocessable_entity

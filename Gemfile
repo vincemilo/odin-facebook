@@ -81,3 +81,7 @@ gem 'gravtastic'
 gem 'omniauth-facebook'
 gem 'omniauth-rails_csrf_protection'
 gem "letter_opener", group: :development
+gem 'figaro'
+gem "dockerfile-rails", ">= 1.1", :group => :development
+
+gem "redis", "~> 5.0"
