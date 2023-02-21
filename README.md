@@ -1,24 +1,11 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+https://www.theodinproject.com/lessons/ruby-on-rails-rails-final-project
 
-Things you may want to cover:
+(Mostly) fully functional Facebook app! Create user accounts, make posts, like/comment, add friends, sign in with Facebook, receive confirmation email, etc
 
-* Ruby version
+* Ruby version: 3.1.2
 
-* System dependencies
+* Rails version: 7.0.3
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* System dependencies: 'bulma-rails', devise', 'responders', 'gravtastic', 'omniauth-facebook', 'omniauth-rails_csrf_protection', "letter_opener", 'figaro'
