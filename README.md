@@ -1,7 +1,4 @@
 # README
-
-https://www.theodinproject.com/lessons/ruby-on-rails-rails-final-project
-
 (Mostly) fully functional Facebook app! Create user accounts, make posts, like/comment, add friends, sign in with Facebook, receive confirmation email, etc
 
 Live app available at: https://odinfb.fly.dev/
@@ -28,3 +25,6 @@ To Do:
 - Proper styling via HTML/CSS
 - Allow use of Facebook avatar if using FB credentials
 - Integration tests using Guard
+
+Assignment:
+https://www.theodinproject.com/lessons/ruby-on-rails-rails-final-project
